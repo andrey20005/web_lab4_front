@@ -1,6 +1,7 @@
 <template>
     <fieldset class="my-fieldset">
-        <legend><h3><slot name="legend"></slot></h3></legend>
+        <legend><slot name="legend"></slot></legend>
+        <!-- <legend><h3><slot name="legend"></slot></h3></legend> -->
         <slot></slot>
     </fieldset>
 </template>

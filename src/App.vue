@@ -32,9 +32,7 @@ const authStore = useAuthStore()
         </div>
     </header>
     
-    <div class="content">
-        <RouterView />
-    </div>
+    <RouterView />
 </template>
 
 <style scoped>
@@ -62,6 +60,7 @@ header div {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .header-info {
