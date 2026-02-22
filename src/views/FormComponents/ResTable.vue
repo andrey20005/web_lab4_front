@@ -7,10 +7,10 @@ const pointsStore = usePointsStore()
 const formatTime = (timeString) => {
     if (!timeString) return ''
     const date = new Date(timeString)
-    return date.toLocaleTimeString('ru-RU', { 
-        hour: '2-digit', 
-        minute: '2-digit', 
-        second: '2-digit' 
+    return date.toLocaleTimeString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
     })
 }
 
@@ -18,7 +18,6 @@ onMounted(() => {
     pointsStore.loadPoints()
 })
 </script>
-
 
 <template>
     <table id="res_table">
@@ -55,20 +54,22 @@ onMounted(() => {
 </template>
 
 <style>
-#res_table {
-  border-collapse: collapse;
-  /* table-layout: fixed; */
-  width: 100%;
-  min-width: 230px;
+#res_table tbody {
+    width: 100%;
+    height: 300px;
+    overflow-y: auto;
 }
 
-#res_table tr th, #res_table tr td {
+#res_table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 230px;
+}
+
+#res_table tr th,
+#res_table tr td {
     padding: 8px;
     text-align: center;
-    /* word-break: break-all; */
-    /* overflow-wrap: break-word; */
-    /* max-width: 300px; */
     white-space: nowrap;
 }
-
 </style>

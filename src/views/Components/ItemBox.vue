@@ -17,9 +17,4 @@
     align-items: center;
 }
 
-/* .item_box div { */
-    /* margin: 0 200px 0 200px; */
-    /* display: block; */
-/* } */
-
 </style>

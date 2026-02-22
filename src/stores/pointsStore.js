@@ -15,37 +15,38 @@ export const usePointsStore = defineStore('points', {
 
   actions: {
     async loadPoints() {
-      this.loading = true
-      this.error = null
+        this.loading = true
+        this.error = null
 
-      try {
-        this.points = await pointsService.getAll()
-      } catch (err) {
-        this.error = 'Не удалось загрузить точки'
-        console.error(err)
-      } finally {
-        this.loading = false
-      }
+        try {
+            this.points = await pointsService.getAll()
+        } catch (err) {
+            this.error = 'Не удалось загрузить точки'
+            console.error(err)
+        } finally {
+            this.loading = false
+        }
     },
 
-    async addPoint(point) {
-      try {
-        const created = await pointsService.create(point)
-        this.points.unshift(created) // Добавляем в начало списка
-      } catch (err) {
-        this.error = 'Не удалось создать точку'
-        throw err
-      }
+    async addPoint() {
+        try {
+            const created = await pointsService.create(this.newPoint)
+            // this.points.unshift(created) // Добавляем в начало списка
+            this.loadPoints()
+        } catch (err) {
+            this.error = 'Не удалось создать точку'
+            throw err
+        }
     },
 
     async removePoint(id) {
-      try {
-        await pointsService.delete(id)
-        this.points = this.points.filter(p => p.id !== id)
-      } catch (err) {
-        this.error = 'Не удалось удалить точку'
-        throw err
-      }
+        try {
+            await pointsService.delete(id)
+            this.points = this.points.filter(p => p.id !== id)
+        } catch (err) {
+            this.error = 'Не удалось удалить точку'
+            throw err
+        }
     }
   }
 })

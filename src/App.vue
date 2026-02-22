@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 
-import { useAuthStore } from '@/stores/auth'
+import { useAuthStore } from '@/stores/authStore'
 const authStore = useAuthStore()
 
 </script>
@@ -47,10 +47,6 @@ header {
     @media (max-width: 775px) {
         margin: 20px 20px 10px 20px;
     }
-    /* margin-top: 20px;
-    margin-right: auto;
-    margin-bottom: 20px;
-    margin-left: auto; */
     padding: 10px;
     background-color: var(--color-background-soft);
     border-radius: 10px;
