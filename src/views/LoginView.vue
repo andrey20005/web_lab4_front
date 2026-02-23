@@ -3,6 +3,9 @@ import { ref } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
 import ItemBox from './Components/ItemBox.vue'
 import { useRouter } from 'vue-router'
+import InputField from './FormComponents/InputField.vue'
+
+import ItemsСontainer from './Components/ItemsСontainer.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()
@@ -44,13 +47,17 @@ const handleRegist = async () => {
 </script>
 
 <template>
-    <ItemBox>
-        <input v-model="username" placeholder="Логин" />
-        <input v-model="password" type="password" placeholder="Пароль" />
-        <a @click="handleLogin">{{ loading ? 'Вход...' : 'Войти' }}</a>
-        <a @click="handleRegist">{{ loading ? 'регистрация...' : 'Зарегестрироваться' }}</a>
-        <div v-if="error" class="error">{{ error }}</div>
-    </ItemBox>
+    <ItemsСontainer>
+        <ItemBox>
+            <input v-model="username" placeholder="Логин" />
+            <input v-model="password" type="password" placeholder="Пароль" />
+            <a @click="handleLogin">{{ loading ? 'Вход...' : 'Войти' }}</a>
+            <a @click="handleRegist">{{ loading ? 'регистрация...' : 'Зарегестрироваться' }}</a>
+            <div v-if="error" class="error">{{ error }}</div>
+        </ItemBox>
+    </ItemsСontainer>
 </template>
 
-<style></style>
+<style>
+
+</style>

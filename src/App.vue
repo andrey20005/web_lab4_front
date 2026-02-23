@@ -1,8 +1,15 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
 
 import { useAuthStore } from '@/stores/authStore'
 const authStore = useAuthStore()
+
+const router = useRouter()
+
+function logout() {
+    authStore.logout()
+    router.push('/login')
+}
 
 </script>
 
@@ -25,7 +32,7 @@ const authStore = useAuthStore()
         </div>
         <div id="user_header" v-if="authStore.isAuthenticated">
             <p>{{ authStore.user }}</p>
-            <a @click="authStore.logout">Выйти</a>
+            <a @click="logout">Выйти</a>
         </div>
         <div id="log-reg-buttons" v-else>
             <RouterLink to="/login">Войти</RouterLink>

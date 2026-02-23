@@ -1,5 +1,34 @@
+<script setup>
+import { ref } from 'vue'
+import { usePointsStore } from '@/stores/pointsStore'
+const pointsStore = usePointsStore()
+const svgRef = ref(null)
+const pointColor = ref("green")
+
+function clickSvg(event) {
+    if (!svgRef.value) return
+
+    const point = new DOMPoint();
+    point.x = event.clientX;
+    point.y = event.clientY;
+
+    const svgPoint = point.matrixTransform(svgRef.value.getScreenCTM().inverse());
+
+    pointsStore.newPoint.x = svgPoint.x * pointsStore.newPoint.r
+    pointsStore.newPoint.y = -svgPoint.y * pointsStore.newPoint.r
+
+    pointsStore.addPoint().then(() => {
+        pointColor.value = pointsStore.created.hit ? "green" : "red"
+    })
+}
+</script>
+
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.3 -1.3 2.6 2.6">
+    <svg ref="svgRef"
+         @click="clickSvg"
+         class="my_swg" 
+         xmlns="http://www.w3.org/2000/svg" 
+         viewBox="-1.3 -1.3 2.6 2.6">
         <rect fill="#ffffff"
                 width="2.6" height="2.6"
                 x="-1.3" y="-1.3"/>
@@ -43,20 +72,25 @@
         <polygon fill="black" points="1.15,0.025 1.2,0, 1.15,-0.025"/>
         <polygon fill="black" points="0.025,-1.15 0,-1.2, -0.025,-1.15"/>
 
-        <text x="-1.08" y="-0.06" font-size="0.11" font-family="monospace">-R</text>
-        <text x="-0.58" y="-0.06" font-size="0.11" font-family="monospace">-R/2</text>
-        <text x="0.42" y="-0.06" font-size="0.11" font-family="monospace">R/2</text>
-        <text x="0.92" y="-0.06" font-size="0.11" font-family="monospace">R</text>
-        <text x="0.03" y="-0.95" font-size="0.11" font-family="monospace">R</text>
-        <text x="0.03" y="-0.45" font-size="0.11" font-family="monospace">R/2</text>
-        <text x="0.03" y="0.55" font-size="0.11" font-family="monospace">-R/2</text>
-        <text x="0.03" y="1.15" font-size="0.11" font-family="monospace">-R</text>
+        <text x="-1.08" y="-0.06" font-size="0.11" font-family="monospace">{{-pointsStore.newPoint.r}}</text>
+        <text x="-0.58" y="-0.06" font-size="0.11" font-family="monospace">{{-pointsStore.newPoint.r/2}}</text>
+        <text x="0.42" y="-0.06" font-size="0.11" font-family="monospace">{{pointsStore.newPoint.r/2}}</text>
+        <text x="0.92" y="-0.06" font-size="0.11" font-family="monospace">{{pointsStore.newPoint.r}}</text>
+        <text x="0.03" y="-0.95" font-size="0.11" font-family="monospace">{{pointsStore.newPoint.r}}</text>
+        <text x="0.03" y="-0.45" font-size="0.11" font-family="monospace">{{pointsStore.newPoint.r/2}}</text>
+        <text x="0.03" y="0.55" font-size="0.11" font-family="monospace">{{-pointsStore.newPoint.r/2}}</text>
+        <text x="0.03" y="1.15" font-size="0.11" font-family="monospace">{{-pointsStore.newPoint.r}}</text>
+
+        <circle r="0.025" 
+                :cx="pointsStore.newPoint.x / pointsStore.newPoint.r" 
+                :cy="-pointsStore.newPoint.y / pointsStore.newPoint.r"
+                :fill="pointColor"/>
     </svg>
 </template>
 
 <style>
 svg {
     border-radius: 10px;
-    width: 300px; height: 300px;
+    width: min(300px, 70vw); height: min(300px, 70vw);
 }
 </style>

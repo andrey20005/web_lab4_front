@@ -6,12 +6,11 @@
 
 <style>
 .item_box {
-    flex: 1;
+    /* flex: 1; */
     margin: 10px;
     background-color: var(--color-background-soft);
     padding: 20px;
     border-radius: 20px;
-    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -16,10 +16,10 @@ const rValues = [-4, -3, -2, -1, 0, 1, 2, 3, 4]
 
 <template>
     <ItemsСontainer>
-        <ItemBox style="flex: 1">
+        <ItemBox>
             <ImageInForm />
         </ItemBox>
-        <ItemBox style="flex: 2" id="form">
+        <ItemBox id="form">
             <InputField>
                 <template #legend>X:</template>
                 <select v-model.number="pointsStore.newPoint.x">

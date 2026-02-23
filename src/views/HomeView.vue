@@ -3,6 +3,7 @@ import { useTimeStore } from '@/stores/timeStore'
 import { onMounted } from 'vue'
 
 import ItemBox from './Components/ItemBox.vue'
+import ItemsСontainer from './Components/ItemsСontainer.vue'
 
 const timeStore = useTimeStore()
 
@@ -12,8 +13,10 @@ onMounted(() => {
 </script>
 
 <template>
-    <ItemBox style="flex: 1">
-        <p>Время: {{ timeStore.currentTime }}</p>
-        <p>Пояс: {{ timeStore.timezone }}</p>
-    </ItemBox>
+    <ItemsСontainer>
+        <ItemBox>
+            <p>Время: {{ timeStore.currentTime }}</p>
+            <p>Пояс: {{ timeStore.timezone }}</p>
+        </ItemBox>
+    </ItemsСontainer>
 </template>

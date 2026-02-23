@@ -8,6 +8,7 @@ export const usePointsStore = defineStore('points', {
         y: 0,
         r: 1,
     },
+    created: null,
     points: [],
     loading: false,
     error: null
@@ -30,8 +31,7 @@ export const usePointsStore = defineStore('points', {
 
     async addPoint() {
         try {
-            const created = await pointsService.create(this.newPoint)
-            // this.points.unshift(created) // Добавляем в начало списка
+            this.created = await pointsService.create(this.newPoint)
             this.loadPoints()
         } catch (err) {
             this.error = 'Не удалось создать точку'

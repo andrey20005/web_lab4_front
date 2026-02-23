@@ -44,9 +44,9 @@ onMounted(() => {
                 </tr>
                 <tr v-for="point in pointsStore.points" :key="point.id">
                     <td>{{ formatTime(point.createdAt) }}</td>
-                    <td>{{ point.r }}</td>
-                    <td>{{ point.x }}</td>
-                    <td>{{ point.y }}</td>
+                    <td>{{ point.r.toFixed(3) }}</td>
+                    <td>{{ point.x.toFixed(3) }}</td>
+                    <td>{{ point.y.toFixed(3) }}</td>
                     <td :class="point.hit ? 'hit' : 'miss'">
                         {{ point.hit ? 'Попал' : 'Мимо' }}
                     </td>
@@ -64,7 +64,8 @@ onMounted(() => {
     max-height: 300px;
     overflow-y: auto;
     overflow-x: auto;
-    border: 1px solid var(--color-border);
+    /* border: 1px solid var(--color-border); */
+    border: 0;
     border-radius: 4px;
     background: var(--color-background-soft);
     
