@@ -33,8 +33,13 @@ export const usePointsStore = defineStore('points', {
         try {
             this.created = await pointsService.create(this.newPoint)
             this.loadPoints()
+            this.error = null
         } catch (err) {
-            this.error = 'Не удалось создать точку'
+            if (err.response.data.message) {
+                this.error = 'Не удалось создать точку: ' + err.response.data.message
+            } else {
+                this.error = 'Не удалось создать точку'
+            }
             throw err
         }
     },

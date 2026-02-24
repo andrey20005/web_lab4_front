@@ -2,8 +2,8 @@
 import { useTimeStore } from '@/stores/timeStore'
 import { onMounted } from 'vue'
 
-import ItemBox from './Components/ItemBox.vue'
-import ItemsСontainer from './Components/ItemsСontainer.vue'
+import ItemBox from './Сomponents/ItemBox.vue'
+import ItemsСontainer from './Сomponents/ItemsСontainer.vue'
 
 const timeStore = useTimeStore()
 

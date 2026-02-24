@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthStore } from '@/stores/authStore'
-import ItemBox from './Components/ItemBox.vue'
+import ItemBox from './Сomponents/ItemBox.vue'
 import { useRouter } from 'vue-router'
 import InputField from './FormComponents/InputField.vue'
 
-import ItemsСontainer from './Components/ItemsСontainer.vue'
+import ItemsСontainer from './Сomponents/ItemsСontainer.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()

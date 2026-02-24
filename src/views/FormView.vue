@@ -2,8 +2,8 @@
 import ImageInForm from './FormComponents/ImageInForm.vue'
 import InputField from './FormComponents/InputField.vue'
 import ResTable from './FormComponents/ResTable.vue'
-import ItemBox from './Components/ItemBox.vue'
-import ItemsСontainer from './Components/ItemsСontainer.vue'
+import ItemBox from './Сomponents/ItemBox.vue'
+import ItemsСontainer from './Сomponents/ItemsСontainer.vue'
 import { ref, computed } from 'vue'
 import { usePointsStore } from '@/stores/pointsStore'
 
@@ -42,6 +42,7 @@ const rValues = [-4, -3, -2, -1, 0, 1, 2, 3, 4]
                 </select>
             </InputField>
             <a @click="pointsStore.addPoint()">{{ pointsStore.loading ? 'Добавление...' : 'Добавить' }}</a>
+            <div class="exeptoin_in_form" v-if="pointsStore.error">{{ pointsStore.error }}</div>
         </ItemBox>
         <ItemBox style="flex: 4">
             <ResTable />
@@ -57,5 +58,9 @@ const rValues = [-4, -3, -2, -1, 0, 1, 2, 3, 4]
     border: 0;
     font-size: 20px;
     color: var(--color-text);
+}
+
+.exeptoin_in_form {
+    max-width: 250px;
 }
 </style>

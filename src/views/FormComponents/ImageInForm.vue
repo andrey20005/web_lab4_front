@@ -1,9 +1,14 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { usePointsStore } from '@/stores/pointsStore'
 const pointsStore = usePointsStore()
 const svgRef = ref(null)
-const pointColor = ref("green")
+
+const pointColor = computed(() => {
+    if (pointsStore.error) return "black"
+    if (pointsStore.created) return pointsStore.created.hit ? "green" : "red"
+    return "black"
+})
 
 function clickSvg(event) {
     if (!svgRef.value) return
@@ -17,9 +22,7 @@ function clickSvg(event) {
     pointsStore.newPoint.x = svgPoint.x * pointsStore.newPoint.r
     pointsStore.newPoint.y = -svgPoint.y * pointsStore.newPoint.r
 
-    pointsStore.addPoint().then(() => {
-        pointColor.value = pointsStore.created.hit ? "green" : "red"
-    })
+    pointsStore.addPoint()
 }
 </script>
 
